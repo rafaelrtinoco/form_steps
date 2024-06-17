@@ -15,18 +15,17 @@ text-align: center;
   margin-bottom: 1rem;
 }
 
-/* .review-data{
+ .review-data{
   text-align: left;
-  
-} */
+ } 
 
-/* .review-data svg{
+.review-data svg{
   margin-left: 5px;
-} */
+} 
 
 .review-data span {
   font-weight: bold;
   text-align: center;
-  padding-top: 80px;
-  margin: 100px;  
+  padding-top: 50px;
+  /* margin: 10px;   */
 }

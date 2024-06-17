@@ -28,6 +28,7 @@ function App() {
   const [data, setData] = useState(formTemplate);
 
   const updateFielHandler = (key, value) => {
+    console.log(key, value)
     setData((prev) => {
       return {...prev, [key]: value}
     })

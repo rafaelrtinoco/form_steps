@@ -1,32 +1,32 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-duplicate-props */
 import { BiSmile, BiShocked, BiSad, BiMeh } from "react-icons/bi";
 
 import "./ReviewForm.css";
 
-const ReviewForm = () => {
+// eslint-disable-next-line no-unused-vars
+const radios = [
+  { label: "Insatisfeiro", value: "insatisfeito", icon: <BiSad /> },
+  { label: "Neutro", value: "neutro", icon: <BiMeh />},
+  { label: "Satisfeito", value: "satisfeito", icon: <BiSmile /> },
+  { label: "Muito Satisfeito", value: "muitosatisfeito", icon: <BiShocked /> },
+];
+
+const ReviewForm = ({ data, updateFielHandler }) => {
+  // console.log("--", data);
   return (
     <div className="review-form">
       <div className="form-control score-container">
-        <label className="radio-container">
-          <input type="radio" value="insatisfeito" name="review" required />
-          <BiSad />
-          <p>Insatisfeito</p>
+        {radios.map((d, i) => (
+          <label key={i} className="radio-container">
+          <input type="radio" value={d.value} name="review" required 
+          checked={data.review === d.value}
+          onChange={() => updateFielHandler("review", d.value)}/>
+          {d.icon}
+          <p>{d.label}</p>
         </label>
-        <label className="radio-container">
-          <input type="radio" value="neutro" name="review" required />
-          <BiMeh />
-          <p>Poderia ser melhor</p>
-        </label>
-        <label className="radio-container">
-          <input type="radio" value="satisfeito" name="review" required />
-          <BiSmile />
-          <p>Satisfeito</p>
-        </label>
-        <label className="radio-container">
-          <input type="radio" value="muitosatisfeito" name="review" required />
-          <BiShocked />
-          <p>Muito Satisfeito</p>
-        </label>
+        ))}
+        
       </div>
       <div className="form-control">
         <label htmlFor="comment">Comentário</label>
@@ -37,6 +37,8 @@ const ReviewForm = () => {
           cols={30}
           placeholder="Conte como foi sua experiencia com o produto...."
           required
+          value={data.comment || ""}
+          onChange={(e) => updateFielHandler("comment", e.target.value)}
         />
       </div>
     </div>
